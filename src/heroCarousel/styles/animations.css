@@ -1,0 +1,346 @@
+/* Global keyframes and helper classes for the HeroCarousel.
+   Imported once by HeroCarousel.jsx. */
+
+@keyframes recognitionScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes dropletBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+@keyframes imageBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes badgeOrbit {
+  0%    { top: 50%;   left: 107%; }
+  12.5% { top: 4.8%;  left: 95.2%; }
+  25%   { top: -7%;   left: 50%; }
+  37.5% { top: 14.6%; left: 14.6%; }
+  50%   { top: 50%;   left: -7%; }
+  62.5% { top: 95.2%; left: 4.8%; }
+  75%   { top: 107%;  left: 50%; }
+  87.5% { top: 85.4%; left: 85.4%; }
+  100%  { top: 50%;   left: 107%; }
+}
+@keyframes certMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.cert-marquee-wrap:hover .cert-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes statLivePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(53,196,106,0.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(53,196,106,0); }
+  100% { box-shadow: 0 0 0 0 rgba(53,196,106,0); }
+}
+@keyframes brandScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.brand-track {
+  animation: brandScroll 40s linear infinite;
+}
+.brand-marquee-wrap:hover .brand-track {
+  animation-play-state: paused;
+}
+@keyframes maithriBounce {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-14px); }
+  100% { transform: translateY(0px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .maithri-bounce { animation: none !important; }
+}
+@media (max-width: 960px) {
+  .maithri-grid { grid-template-columns: 1fr !important; }
+  .maithri-visual { margin: 0 auto; }
+}
+
+/* --- Free, uninterrupted scrolling for the hero carousel ---
+   Every section (mapped slides + the two trailing standalone sections)
+   is exactly one viewport tall, border-box, with no margin — so slides
+   sit flush against each other with zero blank gap, even without any
+   scroll-snap.
+
+   CSS scroll-snap was removed entirely here. It kept pulling the scroll
+   position back to the top of slide 1 for any small scroll near the
+   very start of the page (the "first 20%" jump/snap-back), and forcing
+   its own catch-up animation on every wheel/trackpad tick made regular
+   scrolling feel heavy and interruptible everywhere else too. Plain,
+   native scrolling has none of that: it never fights or resets the
+   user's scroll position, so the page just scrolls continuously. The
+   per-slide content fade/slide-in animations (see DefaultHeroSection
+   etc.) are untouched — those are separate CSS transitions driven by
+   `activeIndex` via IntersectionObserver, not by scroll-snap. */
+.carousel-viewport {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  cursor: none;
+  user-select: none;
+  -webkit-user-select: none;
+  /* Hide this container's own scrollbar — slides still scroll normally
+     with the wheel/trackpad/touch/keyboard, this just removes the
+     visible track/thumb the browser would otherwise draw here. */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.carousel-viewport::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+.carousel-viewport section {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* --- Responsive hero layout helpers ---
+   These take over the parts of DefaultHeroSection / MeghdootHeroSection
+   that used to be fixed pixel values baked into inline styles (absolute
+   right/top offsets, fixed widths, side-by-side flex with no wrap). Inline
+   styles still drive colors/animation; these classes own layout so it can
+   change per breakpoint. */
+
+/* DefaultHeroSection: the optional right-hand "side cards" column (e.g.
+   Impact atlas / Latest news / R&D innovations on the opening slide).
+   Desktop: pinned absolute to the right of the text column.
+   Tablet/mobile: drops into normal flow, full width, below the text — this
+   is what stops it overlapping the headline once the headline wraps. */
+.hero-side-cards {
+  position: absolute;
+  right: 140px;
+  top: 46px;
+  width: 430px;
+  max-width: 40vw;
+}
+@media (max-width: 1180px) {
+  .hero-side-cards {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 28px;
+  }
+}
+
+/* DefaultHeroSection: the text column (eyebrow/heading/body/CTAs). Just
+   needs to never exceed the viewport once padding is accounted for. */
+.hero-text-col {
+  max-width: 100%;
+}
+
+/* DefaultHeroSection: the `boxed` variant (Credibility slide) — solid card
+   wrapping the whole text column. Padding shrinks on small screens. */
+.hero-boxed-card {
+  padding: 40px 40px 36px;
+}
+@media (max-width: 640px) {
+  .hero-boxed-card {
+    padding: 26px 22px 24px;
+  }
+}
+
+/* MeghdootHeroSection: copy + glass stat box side by side on desktop,
+   stacked on tablet/mobile instead of being squeezed (no wrap previously). */
+.meghdoot-hero-row {
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.meghdoot-hero-copy {
+  flex: 1 1 420px;
+  max-width: 620px;
+  min-width: 0;
+}
+.meghdoot-hero-glass {
+  flex: 1 1 380px;
+  max-width: 520px;
+  min-width: 0;
+  padding: 44px 42px;
+}
+@media (max-width: 900px) {
+  .meghdoot-hero-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+  }
+  .meghdoot-hero-copy,
+  .meghdoot-hero-glass {
+    max-width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  .meghdoot-hero-glass {
+    padding: 26px 22px;
+  }
+}
+
+/* Hero CTA rows: let buttons wrap onto a second line instead of
+   overflowing/squeezing on narrow screens. */
+.hero-cta-row {
+  flex-wrap: wrap;
+}
+
+/* Slide sections: fixed 100vh + overflow:hidden works on desktop where
+   content always fits one screen, but once side-cards/glass boxes stack in
+   normal flow on small screens the content can be taller than the
+   viewport. min-height (instead of a hard height) plus visible overflow
+   lets that extra content simply push the next slide down / be scrolled
+   to, instead of being clipped. */
+@media (max-width: 1024px) {
+  .carousel-viewport section.hero-slide-section {
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
+    padding-top: 110px !important;
+    padding-bottom: 48px !important;
+  }
+}
+
+/* On phones specifically (not tablets/laptops — see the 1024px block
+   above, which is left untouched), slides that are shorter than a full
+   screen no longer reserve a full 100vh of empty space before the next
+   slide starts. The opening water-scene hero (slide 0) keeps its full,
+   immersive viewport height; every other slide now sizes to its own
+   content, and the top/bottom breathing room around each slide is
+   trimmed down so consecutive slides read as one continuous, tightly
+   spaced page instead of leaving large dead gaps between them.
+
+   The generous 110px top padding every slide used to carry was there to
+   clear the fixed navbar — but since this is one continuous scrolling
+   page (not slides that individually snap to the top), the navbar only
+   ever needs to clear the very first screenful of content. Every slide
+   after the first was paying that same 110px "just in case" cost for no
+   reason, which was the single biggest source of the large gaps between
+   slides. Only slide 0 keeps that clearance now. */
+@media (max-width: 640px) {
+  .carousel-viewport section.hero-slide-section {
+    min-height: 0 !important;
+    padding-top: 22px !important;
+    padding-bottom: 16px !important;
+  }
+  .carousel-viewport section.hero-slide-section[data-index="0"] {
+    min-height: 100vh !important;
+    padding-top: 76px !important;
+  }
+}
+
+/* On phones, carousel copy and imagery deliberately become separate blocks.
+   This avoids text being painted over the photograph and lets each visual
+   retain a clear, responsive aspect ratio below its slide content. */
+.hero-mobile-media { display: none; }
+@media (max-width: 640px) {
+  .carousel-viewport section.hero-slide-section {
+    display: block !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  .hero-background-media,
+  .hero-background-wash { display: none; }
+  /* The opening water scene stays a full-bleed, image-backed introduction,
+     as in the supplied mobile reference. */
+  .carousel-viewport section[data-index="0"] .hero-background-media,
+  .carousel-viewport section[data-index="0"] .hero-background-wash { display: block; }
+  .carousel-viewport section[data-index="0"] .hero-mobile-media { display: none; }
+  .carousel-viewport section[data-index="0"] .hero-text-col,
+  .carousel-viewport section[data-index="0"] .hero-side-cards { position: relative; z-index: 2; }
+  .hero-content-wrap {
+    margin-bottom: 10px;
+  }
+  .hero-text-col {
+    max-width: 100% !important;
+    margin-top: 0 !important;
+    /* Mobile is a continuous page rather than a deck: never hide copy
+       simply because IntersectionObserver has selected another slide. */
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* CTA row sits directly above the media block on phones — keep the gap
+     between the buttons and the photo/video small and consistent instead
+     of the large default block-flow gap. */
+  .hero-cta-row {
+    width: 100%;
+    margin-bottom: 14px;
+  }
+  .hero-cta-row a { flex: 1 1 100% !important; }
+  .hero-mobile-media {
+    display: block;
+    width: 100%;
+    margin: 0 0 14px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 18px 40px rgba(20, 54, 92, 0.14);
+  }
+  .hero-mobile-media img,
+  .hero-mobile-media video {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 220px;
+    object-fit: cover;
+  }
+  /* Side cards (e.g. "Impact atlas" / "Latest news" / "R&D innovations"
+     on the opening slide): force them to sit fully inside the viewport,
+     each on its own full-width row, left-aligned and never clipped or
+     pushed outside the screen edge. */
+  .hero-side-cards {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 10px !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .hero-side-cards a {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+  }
+  .hero-side-cards a > div {
+    min-width: 0;
+  }
+  .hero-side-cards a > div > div {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Keep slide copy comfortably inside a phone viewport, without clipped
+     lines or the large dead zones visible in the previous layout. */
+  .hero-text-col h1 { font-size: clamp(36px, 11vw, 52px) !important; }
+  .hero-text-col p { overflow-wrap: anywhere; }
+
+  /* Auto-height slides (Certifications, MEGHDOOT® Foundation, Social
+     Signals) and the Trusted-by-brands ribbon each carry their own
+     internal top/bottom padding on top of the slide-level padding above.
+     Trimmed here so the space between one slide's content and the next
+     is small, instead of the two paddings stacking into a large gap. */
+  .certifications-inner,
+  .social-signals-inner {
+    padding: 20px 0 !important;
+  }
+  .meghdoot-hero-row {
+    padding: 20px 0 !important;
+  }
+  .trusted-brands-inner {
+    padding: 24px 0 !important;
+  }
+}
+
+/* Slide dots + counter: fixed-position desktop navigation chrome. On
+   tablet/mobile the hero is one continuous scroll (no side rail to dock
+   them against) and they'd otherwise float on top of stacked content, so
+   they're hidden below 900px — matching how the rest of the site treats
+   this deck as a normal scrolling page on small screens. */
+@media (max-width: 900px) {
+  .hero-nav-dots,
+  .hero-slide-counter {
+    display: none !important;
+  }
+}

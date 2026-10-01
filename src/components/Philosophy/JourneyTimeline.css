@@ -1,0 +1,248 @@
+.journey {
+  background: var(--mist-100);
+  padding: var(--section-pad) 0;
+}
+
+.journey-eyebrow {
+  color: var(--blue-600);
+}
+
+.journey-title {
+  margin: 12px 0 32px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  color: var(--ink-900);
+  text-align: center;
+}
+
+.journey-accent {
+  color: var(--blue-600);
+}
+
+/* ---------- Showcase: selected milestone's details + image panel ---------- */
+.journey-showcase {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 28px;
+}
+
+.journey-showcase-year {
+  position: absolute;
+  left: 0;
+  top: -8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--ink-900);
+}
+
+.journey-checklist {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  flex: 0 0 340px;
+}
+
+.journey-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--mist-200);
+  font-size: 1rem;
+  color: var(--ink-900);
+  line-height: 1.5;
+}
+
+.journey-checklist li:last-child { border-bottom: none; }
+
+.journey-check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--blue-600);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.journey-image-panel {
+  flex: 1;
+  min-width: 0;
+  min-height: 320px;
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  border: 2px solid var(--blue-100);
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  overflow: hidden;
+}
+
+.journey-image-year {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  color: var(--blue-100);
+}
+
+/* Real milestone photo fills the panel edge-to-edge once one is available */
+.journey-image-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: journeyImageIn 0.35s ease;
+}
+
+@keyframes journeyImageIn {
+  from { opacity: 0; transform: scale(1.02); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- Horizontal year track ---------- */
+.journey-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+}
+
+.journey-track-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 34px;
+  height: 1px;
+  background: var(--mist-200);
+}
+
+.journey-track-stop {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.journey-track-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--mist-200);
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.journey-track-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--ink-400);
+  transition: color 0.2s ease;
+}
+
+/* Milestones already passed on the way to the active one: solid filled dot */
+.journey-track-stop.is-passed .journey-track-dot {
+  background: var(--ink-400);
+  border-color: var(--ink-400);
+}
+
+.journey-track-stop.is-active {
+  z-index: 2;
+}
+
+/* Active milestone: hollow ring, not a filled dot */
+.journey-track-stop.is-active .journey-track-dot {
+  border-color: var(--blue-600);
+  border-width: 3px;
+  background: var(--white);
+  transform: scale(1.3);
+  box-shadow: 0 0 0 4px var(--blue-100);
+}
+
+.journey-track-stop.is-active .journey-track-label {
+  color: var(--blue-600);
+  font-weight: 800;
+}
+
+/* ---------- Popup thumbnail above the selected year ---------- */
+.journey-track-popup {
+  position: absolute;
+  bottom: calc(100% + 18px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92px;
+  height: 92px;
+  border-radius: 12px;
+  overflow: visible;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+  animation: journeyPopupIn 0.22s ease;
+}
+
+.journey-track-popup img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  border: 2px solid var(--white);
+}
+
+.journey-track-popup-empty {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  display: block;
+  background: var(--mist-100);
+  border: 2px dashed var(--mist-200);
+}
+
+.journey-track-popup-arrow {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 9px solid var(--blue-600);
+}
+
+@keyframes journeyPopupIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px) scale(0.9); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+@media (max-width: 900px) {
+  .journey-showcase { flex-direction: column; align-items: stretch; gap: 24px; margin-bottom: 44px; }
+  .journey-checklist { flex: none; width: 100%; }
+  .journey-showcase-year { position: static; margin-bottom: 8px; display: block; }
+  .journey-image-panel { width: 100%; min-height: 220px; padding: 0 24px; }
+  .journey-track { flex-wrap: wrap; gap: 20px; row-gap: 24px; justify-content: flex-start; }
+  .journey-track-line { display: none; }
+  .journey-track-popup { width: 68px; height: 68px; bottom: calc(100% + 14px); }
+}
+
+@media (max-width: 420px) {
+  .journey-image-panel { min-height: 180px; padding: 0 16px; }
+}

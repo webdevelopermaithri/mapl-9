@@ -1,0 +1,104 @@
+.leadership {
+  background: var(--mist-100);
+  padding: var(--section-pad) 0;
+}
+
+.leadership-eyebrow {
+  color: var(--blue-600);
+}
+
+.leadership-title {
+  margin: 20px 0 16px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  color: var(--ink-900);
+}
+
+.leadership-accent {
+  color: var(--blue-600);
+}
+
+.leadership-body {
+  max-width: 62ch;
+  color: var(--ink-600);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  margin: 0 0 48px;
+}
+
+.leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.person-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
+}
+
+.person-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(20, 40, 90, 0.1);
+}
+
+.person-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  box-shadow: 0 10px 24px rgba(20, 40, 90, 0.18);
+  transition: transform 0.5s var(--ease-out);
+}
+
+.person-card:hover .person-avatar {
+  transform: rotate(8deg) scale(1.05);
+}
+
+.person-avatar span {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: var(--white);
+}
+
+.person-card h3 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--ink-900);
+}
+
+.person-role {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #2aa9c4;
+  margin-bottom: 14px;
+}
+
+.person-card p {
+  margin: 0;
+  color: var(--ink-600);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 960px) {
+  .leadership-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .leadership-grid {
+    grid-template-columns: 1fr;
+  }
+}

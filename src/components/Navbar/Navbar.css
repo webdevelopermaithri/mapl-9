@@ -1,0 +1,445 @@
+.navbar {
+  width: 100%;
+  background: linear-gradient(90deg, #ffffff 0%, #f2f7fb 55%, #e9f2f8 100%);
+  border-bottom: 1px solid #eef2f6;
+  /* `position: fixed` (rather than `sticky`) so the navbar reliably
+     stays pinned to the viewport on every page. `sticky` depends on
+     none of its ancestors setting a non-"visible" overflow, but this
+     project sets `overflow-x: hidden` on html/body/#root (to guard
+     against accidental horizontal scroll) — that's enough to make
+     several browsers stop honoring `position: sticky`, which is why
+     the nav was scrolling away instead of staying put. `fixed` isn't
+     affected by ancestor overflow, so it stays pinned everywhere. */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+/* `position: fixed` takes the navbar out of the normal document flow,
+   so (unlike the old `sticky` behavior) page content would otherwise
+   start underneath it. This spacer reserves the same height the
+   navbar actually occupies so every page's content still starts right
+   below it. The home page renders its hero directly under the
+   transparent floating navbar instead, so it skips this spacer (see
+   Navbar.jsx). */
+.navbar__spacer {
+  height: 57px;
+}
+
+@media (max-width: 480px) {
+  .navbar__spacer {
+    height: 57px;
+  }
+}
+
+.navbar__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 32px;
+  gap: 18px;
+}
+
+/* Brand */
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.navbar__logo {
+  width: auto;
+  height: 36px;
+  object-fit: contain;
+}
+
+.navbar__brandtext {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.navbar__title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  color: #14365c;
+}
+
+.navbar__subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  color: #7a8a9a;
+  margin-top: 2px;
+}
+
+/* Links */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex: 1;
+  justify-content: center;
+}
+
+.navbar__item {
+  position: relative;
+}
+
+.navbar__link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #55636f;
+  padding: 6px 2px;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.navbar__link:hover {
+  color: #14365c;
+}
+
+.navbar__link--active {
+  color: #14202b;
+  font-weight: 600;
+  border-bottom: 2px solid #14202b;
+}
+
+.navbar__chevron {
+  color: #98a5b0;
+  transition: transform 0.15s ease;
+}
+
+.navbar__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown */
+.navbar__dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px) scale(0.97);
+  transform-origin: top center;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(20, 54, 92, 0.16), 0 2px 8px rgba(20, 54, 92, 0.06);
+  min-width: 220px;
+  border: 1px solid #eef2f6;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.22s;
+}
+
+.navbar__dropdown::before {
+  content: "";
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, #1f6fb2 0%, #3fa0c9 50%, #35c46a 100%);
+}
+
+.navbar__dropdown--open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.navbar__dropdown-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.navbar__dropdown--grid .navbar__dropdown-inner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(185px, 1fr));
+  gap: 2px;
+}
+
+/* Single-column format: exactly one option per row, full width,
+   highlighted as the cursor moves over each row (see
+   .navbar__dropdown-item:hover). Explicit grid-template-columns: none
+   and !important guard against ever collapsing into the grid layout
+   above, regardless of how many options are passed in. */
+.navbar__dropdown--column {
+  min-width: 260px;
+}
+
+.navbar__dropdown--column .navbar__dropdown-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: none !important;
+  gap: 1px;
+}
+
+.navbar__dropdown--column .navbar__dropdown-item {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.navbar__dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  color: #45525e;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease, padding-left 0.18s ease;
+}
+
+.navbar__dropdown-item:hover {
+  background: linear-gradient(90deg, #f2f7fb 0%, #eaf2fb 100%);
+  color: #14365c;
+  padding-left: 18px;
+}
+
+/* CTA */
+.navbar__cta {
+  border: 1px solid #b9c6d1;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #14365c;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.navbar__cta:hover {
+  background: #14365c;
+  color: #ffffff;
+  border-color: #14365c;
+}
+
+/* Burger (mobile) */
+.navbar__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.navbar__burger span {
+  width: 22px;
+  height: 2px;
+  background: #14365c;
+  border-radius: 2px;
+}
+
+.navbar__mobile {
+  display: none;
+}
+
+/* ------------------------------------------------------------------
+   Mobile menu — full-screen overlay
+   Large serif (Cormorant Garamond) headings for top-level items,
+   small tracked uppercase sans-serif for sub-items, sizes fluid via
+   clamp() so the same rules hold from small phones up to tablets.
+   ------------------------------------------------------------------ */
+.navbar__mobile-overlay {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .navbar__mobile-overlay {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: #ffffff;
+  }
+
+  .navbar__mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    padding: clamp(12px, 3vw, 18px) clamp(16px, 5vw, 32px);
+    border-bottom: 1px solid #eef2f6;
+  }
+
+  .navbar__mobile-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    color: #14202b;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.15s ease;
+  }
+
+  .navbar__mobile-close:hover {
+    background: #f2f5f8;
+  }
+
+  .navbar__mobile {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: clamp(20px, 5vw, 32px) clamp(20px, 6vw, 40px)
+      clamp(16px, 4vw, 24px);
+    gap: clamp(14px, 3vw, 20px);
+  }
+
+  .navbar__mobile-group {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: clamp(14px, 3vw, 20px);
+    border-bottom: 1px solid #f2f5f8;
+  }
+
+  .navbar__mobile-group:last-child {
+    border-bottom: none;
+  }
+
+  .navbar__mobile-link {
+    font-family: var(--font-display, "Cormorant Garamond", serif);
+    font-size: clamp(24px, 7vw, 34px);
+    font-weight: 500;
+    line-height: 1.2;
+    color: #14202b;
+    padding: 4px 0;
+  }
+
+  .navbar__mobile-dropdown {
+    display: flex;
+    flex-direction: column;
+    margin-top: clamp(8px, 2vw, 14px);
+    gap: clamp(10px, 2.4vw, 14px);
+  }
+
+  .navbar__mobile-sublink {
+    font-family: var(--font-body, "Inter", sans-serif);
+    font-size: clamp(11px, 3vw, 13px);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7a8a9a;
+    transition: color 0.15s ease;
+  }
+
+  .navbar__mobile-sublink:hover,
+  .navbar__mobile-sublink.navbar__link--active {
+    color: #14365c;
+  }
+
+  .navbar__mobile-footer {
+    flex-shrink: 0;
+    padding: clamp(12px, 3vw, 18px) clamp(20px, 6vw, 40px)
+      clamp(16px, 4vw, 24px);
+    border-top: 1px solid #eef2f6;
+  }
+
+  .navbar__cta--mobile {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: linear-gradient(135deg, #1f6fb2 0%, #2f80ce 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 16px;
+    padding: clamp(14px, 3.5vw, 17px) 20px;
+    font-family: var(--font-body, "Inter", sans-serif);
+    font-size: clamp(14px, 3.6vw, 16px);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 0;
+    box-shadow: 0 10px 24px rgba(31, 111, 178, 0.28);
+  }
+
+  .navbar__cta--mobile:hover {
+    background: linear-gradient(135deg, #1a5f9a 0%, #2971b8 100%);
+    color: #ffffff;
+    border-color: transparent;
+  }
+}
+
+/* Home page hero overlay: navbar floats transparently over the carousel
+   instead of pushing it down, matching the light hero backgrounds. */
+.navbar--home {
+  background: transparent;
+  border-bottom: none;
+  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+/* Once the hero has scrolled past slide 1, switch from fully transparent
+   to the site's normal solid navbar background (same look used on every
+   other page) so it reads clearly over any slide's background colors,
+   instead of staying see-through. */
+[data-hero-scrolled="true"] .navbar--home {
+  background: linear-gradient(90deg, #ffffff 0%, #f2f7fb 55%, #e9f2f8 100%);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: 1px solid #eef2f6;
+}
+
+@media (max-width: 1100px) {
+  .navbar--home {
+    background: linear-gradient(90deg, #ffffff 0%, #f2f7fb 55%, #e9f2f8 100%);
+  }
+}
+
+/* Responsive: collapse the desktop nav/CTA behind the burger. The
+   full-screen overlay's own look (headings, sub-links, CTA) is defined
+   in the "Mobile menu — full-screen overlay" block above. */
+@media (max-width: 1100px) {
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__cta {
+    display: none;
+  }
+
+  .navbar__burger {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar__inner {
+    padding: 10px 16px;
+  }
+
+  .navbar__subtitle {
+    letter-spacing: 1.8px;
+  }
+}

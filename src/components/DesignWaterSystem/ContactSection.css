@@ -1,0 +1,256 @@
+.dyws-page .contact-section {
+  background: var(--color-bg);
+  /* The two grid columns (intro+map vs. form) are rarely the same
+     height, so the section's default 96px bottom padding on top of
+     that mismatch was leaving a large empty gap before the FAQ
+     section below. Tightened here so the FAQ heading sits right
+     after the taller column instead of floating far below it.
+     Qualified with .dyws-page (matching the shared ".dyws-page
+     .section" rule's specificity) — a plain ".contact-section"
+     selector was being silently outweighed by that rule and never
+     actually applied. */
+  /* .dyws-page .contact-section and the shared .dyws-page .section
+     rule (96px padding, in DesignWaterSystem.css) have identical
+     specificity. DesignWaterSystem.css is imported after this file
+     (via ContactUs.jsx), so on a specificity tie it wins the
+     cascade and the 96px padding was silently still winning here —
+     !important makes this override unconditional. */
+  padding-bottom: 40px !important;
+}
+
+@media (max-width: 720px) {
+  .dyws-page .contact-section {
+    padding-bottom: 40px !important;
+  }
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 6vw;
+  align-items: start;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* Grid items (and their flex/select descendants) default to
+   min-width: auto, which means they refuse to shrink below their
+   content's natural width. A long <select> option ("Social Media
+   (Facebook, Instagram, LinkedIn, X)") was enough to force the whole
+   mobile column — heading, map, and form alike — wider than the
+   screen, and since the page clips overflow instead of scrolling it,
+   the right edge of everything in that column was silently sliced
+   off. min-width: 0 lets each item shrink to fit its actual column. */
+.contact-intro,
+.contact-form {
+  min-width: 0;
+}
+
+.contact-heading {
+  font-size: clamp(2.6rem, 4.8vw, 3.9rem);
+  color: var(--color-ink);
+  margin-bottom: 18px;
+}
+
+.contact-copy {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+  max-width: 46ch;
+  margin-bottom: 32px;
+}
+
+.contact-details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact-details li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.contact-details li > div {
+  min-width: 0;
+}
+
+.contact-value,
+.contact-copy,
+.contact-heading {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-soft);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.contact-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin-bottom: 2px;
+}
+
+.contact-value {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-ink);
+}
+
+.contact-map {
+  margin-top: 32px;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 30px 60px -30px rgba(18, 32, 60, 0.18);
+}
+
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 640px) {
+  .contact-map {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+.contact-form {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 30px 60px -30px rgba(18, 32, 60, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.form-field label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.required {
+  color: var(--color-accent);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-ink);
+  background: var(--color-bg-soft);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background: #fff;
+}
+
+.field-error {
+  font-size: 0.8rem;
+  color: #c0392b;
+  margin: 0;
+}
+
+.submit-button {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.submit-button:hover {
+  background: var(--color-accent-deep);
+  transform: translateY(-1px);
+}
+
+.form-status {
+  min-height: 1em;
+  font-size: 0.9rem;
+  color: var(--color-accent-deep);
+}
+
+@media (max-width: 960px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-form {
+    padding: 24px 20px;
+  }
+
+  /* Leaves room so the fixed WhatsApp/Chat buttons never sit on top
+     of the submit button or status message at the end of the form. */
+  .contact-form {
+    padding-bottom: 84px;
+  }
+
+  .contact-heading {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+
+  .contact-copy {
+    font-size: 1rem;
+    max-width: none;
+  }
+}

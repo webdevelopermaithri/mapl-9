@@ -1,0 +1,108 @@
+/* Scoped styles for the "Design Your Water System" page only.
+   Everything is namespaced under .dyws-page so it can never leak out
+   and affect the Navbar, Home, Technology, or any other route. */
+
+.dyws-page {
+  --color-bg: #ffffff;
+  --color-bg-soft: #eef4fd;
+  --color-ink: #12203c;
+  --color-ink-soft: #5b677e;
+  --color-accent: #2f5fd6;
+  --color-accent-deep: #1f3f9e;
+  --color-navy: #0b1e3a;
+  --color-navy-soft: #16294a;
+  --color-gold: #e0a94a;
+  --color-border: #dfe6f3;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.dyws-page h1,
+.dyws-page h2,
+.dyws-page h3,
+.dyws-page h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.dyws-page p {
+  margin: 0;
+}
+
+.dyws-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.dyws-page button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.dyws-page ::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.dyws-page .italic-accent {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.dyws-page .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 18px;
+}
+
+.dyws-page .eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--color-accent);
+  display: inline-block;
+}
+
+.dyws-page .section {
+  width: 100%;
+  padding: 96px 8vw;
+}
+
+@media (max-width: 720px) {
+  .dyws-page .section {
+    padding: 64px 6vw;
+  }
+}
+
+.dyws-page :focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dyws-page * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

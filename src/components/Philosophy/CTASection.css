@@ -1,0 +1,90 @@
+.cta {
+  position: relative;
+  background: var(--white);
+  padding: calc(var(--section-pad) + 20px) 0;
+  overflow: hidden;
+}
+
+.cta-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.cta-bubbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.cta-bubbles span {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(63, 116, 221, 0.16), rgba(63, 116, 221, 0.02));
+  animation: float-y 8s ease-in-out infinite;
+}
+.cta-bubbles span:nth-child(1) { width: 90px; height: 90px; left: 6%; top: 12%; animation-duration: 7s; }
+.cta-bubbles span:nth-child(2) { width: 46px; height: 46px; left: 14%; top: 68%; animation-duration: 6s; animation-delay: 0.6s; }
+.cta-bubbles span:nth-child(3) { width: 34px; height: 34px; right: 10%; top: 20%; animation-duration: 9s; animation-delay: 0.3s; }
+.cta-bubbles span:nth-child(4) { width: 70px; height: 70px; right: 16%; bottom: 12%; animation-duration: 7.5s; animation-delay: 0.9s; }
+.cta-bubbles span:nth-child(5) { width: 20px; height: 20px; left: 48%; top: 8%; animation-duration: 5.5s; }
+
+.cta-inner {
+  position: relative;
+  text-align: center;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+.cta-eyebrow {
+  justify-content: center;
+  color: var(--blue-600);
+}
+
+.cta-title {
+  margin: 20px 0 18px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 4.6vw, 3.2rem);
+  color: var(--ink-900);
+}
+
+.cta-accent {
+  color: var(--blue-600);
+}
+
+.cta-body {
+  color: var(--ink-600);
+  font-size: 1.02rem;
+  margin: 0 0 36px;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  border-radius: 999px;
+  padding: 16px 32px;
+  background: var(--blue-600);
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  animation: pulse-soft 2.6s ease-out infinite;
+  transition: transform 0.3s var(--ease-out), background 0.3s;
+}
+
+.cta-button:hover {
+  background: var(--blue-500);
+  transform: translateY(-3px);
+}
+
+.cta-arrow {
+  transition: transform 0.3s var(--ease-out);
+}
+.cta-button:hover .cta-arrow {
+  transform: translateX(4px);
+}

@@ -1,0 +1,62 @@
+.phi-management {
+  background: var(--mist-100);
+  padding: var(--section-pad) 0 32px;
+}
+
+.phi-people-head {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.phi-people-eyebrow {
+  justify-content: center;
+  color: var(--blue-600);
+}
+
+.phi-people-title {
+  margin: 12px 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  color: var(--ink-900);
+}
+
+.phi-people-accent {
+  color: var(--blue-600);
+}
+
+/* ---------------------------------------------------------------------
+   Squared-off photo for the Management carousel (matches the
+   rounded-square headshot treatment used on the R&D team cards),
+   replacing the small circular avatar from the shared PeopleCarousel
+   default. Scoped to .phi-management only. Sized down slightly from the
+   first pass so the photo reads as a headshot, not the dominant element
+   of the card.
+   ------------------------------------------------------------------- */
+.phi-management .pc-photo {
+  width: 100%;
+  max-width: clamp(180px, 26vw, 260px);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  border-radius: 20px;
+  padding: 0;
+  background: none;
+  box-shadow: 0 14px 32px rgba(20, 50, 90, 0.16);
+}
+
+.phi-management .pc-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: none;
+  object-fit: cover;
+  object-position: 50% 15%;
+}
+
+.phi-management .pc-card {
+  padding-top: 32px;
+}
+
+.phi-management .pc-name {
+  margin-top: 4px;
+}

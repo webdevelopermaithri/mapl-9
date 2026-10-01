@@ -1,0 +1,135 @@
+/* ============================================================
+   ALL PRODUCTS PAGE — design tokens for the full MEGHDOOT product
+   directory (every model, filterable, with a full comparison
+   table). Scoped under .ap-page / ap- prefixed classes and custom
+   properties so it never collides with Tailwind utilities or any
+   other page's styling (mirrors the Products Overview / mp- page).
+   ============================================================ */
+
+.ap-page {
+  --ap-ink: #12283e;
+  --ap-navy-deep: #16324f;
+  --ap-blue-accent: #2f6fd6;
+  --ap-blue-accent-deep: #1e4fa8;
+  --ap-teal: #178f92;
+  --ap-amber: #b9762f;
+  --ap-cream: #f7f9fc;
+  --ap-sky-mist: #eaf1fb;
+  --ap-paper: #ffffff;
+  --ap-line: rgba(18, 40, 62, 0.1);
+  --ap-muted: #5b6b7c;
+
+  --ap-font-display: "Cormorant Garamond", Georgia, serif;
+  --ap-font-body: "Inter", "Segoe UI", sans-serif;
+
+  font-family: var(--ap-font-body);
+  color: var(--ap-ink);
+  background: var(--ap-cream);
+}
+
+.ap-page img {
+  max-width: 100%;
+  display: block;
+}
+
+.ap-page .ap-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.ap-page .ap-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ap-blue-accent);
+}
+
+.ap-page .ap-eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--ap-blue-accent);
+  display: inline-block;
+}
+
+.ap-page .ap-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease,
+    border-color 0.18s ease, color 0.18s ease;
+}
+
+.ap-page .ap-btn:focus-visible {
+  outline: 3px solid var(--ap-blue-accent);
+  outline-offset: 2px;
+}
+
+.ap-page .ap-btn-primary {
+  background: var(--ap-blue-accent);
+  color: #fff;
+  box-shadow: 0 10px 24px -10px rgba(47, 111, 214, 0.55);
+}
+
+.ap-page .ap-btn-primary:hover {
+  transform: translateY(-1px);
+  background: var(--ap-blue-accent-deep);
+  box-shadow: 0 14px 28px -10px rgba(47, 111, 214, 0.65);
+}
+
+.ap-page .ap-btn-secondary {
+  background: var(--ap-paper);
+  color: var(--ap-navy-deep);
+  border: 1px solid var(--ap-line);
+}
+
+.ap-page .ap-btn-secondary:hover {
+  transform: translateY(-1px);
+  border-color: var(--ap-blue-accent);
+  color: var(--ap-blue-accent);
+}
+
+.ap-page .ap-pill {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 10px 18px;
+  border: 1px solid var(--ap-line);
+  background: var(--ap-paper);
+  color: var(--ap-muted);
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+}
+
+.ap-page .ap-pill:hover {
+  border-color: var(--ap-blue-accent);
+  color: var(--ap-blue-accent);
+}
+
+.ap-page .ap-pill--active {
+  border-color: var(--ap-blue-accent);
+  color: var(--ap-blue-accent);
+  background: var(--ap-sky-mist);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ap-page * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

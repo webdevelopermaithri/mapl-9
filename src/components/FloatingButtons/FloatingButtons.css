@@ -1,0 +1,297 @@
+.floating-buttons {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  z-index: 40;
+}
+
+.floating-quick-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* Collapsed single-button toggle: hidden by default (desktop shows both
+   WhatsApp/Chat buttons directly, same as always). Only switched on for
+   small screens below, where it replaces the always-visible pair. */
+.floating-fab-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: #1f6fb2;
+  color: #fff;
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.floating-fab-toggle:hover {
+  transform: translateY(-2px);
+  background: #164e80;
+}
+
+.floating-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease;
+}
+
+.floating-button:hover {
+  transform: translateY(-2px);
+}
+
+.floating-whatsapp {
+  background: #25d366;
+}
+
+.floating-chat {
+  /* light blue, per request — was previously var(--color-accent),
+     which was never defined at :root and rendered with no color */
+  background: #5cb3eb;
+}
+
+.floating-chat:hover {
+  background: #4aa5e0;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Chat panel — MEGHDOOT guide                                        */
+/* ------------------------------------------------------------------ */
+
+.chat-panel {
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  height: 480px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.chat-panel__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #5cb3eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.chat-panel__header-text {
+  flex: 1;
+}
+
+.chat-panel__name {
+  font-weight: 700;
+  font-size: 14px;
+  color: #111;
+}
+
+.chat-panel__role {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: #1f6fb2;
+  font-weight: 700;
+}
+
+.chat-panel__close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.chat-panel__messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 16px;
+}
+
+.chat-bubble-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.chat-bubble-row--user {
+  justify-content: flex-end;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.chat-bubble--assistant {
+  background: #f2f5f8;
+  color: #222;
+}
+
+.chat-bubble--user {
+  background: #5cb3eb;
+  color: #fff;
+}
+
+.chat-bubble--typing {
+  color: #888;
+}
+
+.chat-quick-questions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.chat-quick-question {
+  border: 1px solid #cfe0ee;
+  background: #fff;
+  color: #1f6fb2;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.chat-panel__input-area {
+  padding: 10px 12px;
+  border-top: 1px solid #eee;
+}
+
+.chat-panel__input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.chat-panel__input {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  outline: none;
+}
+
+.chat-panel__send {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  background: #5cb3eb;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chat-panel__sales {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background: #dce9f6;
+  color: #1f6fb2;
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  /* While the Contact section (with its own WhatsApp/email/phone
+     details) is on screen, fade the floating widget out instead of
+     letting it sit fixed on top of the form, map, or contact text
+     as the page scrolls. See ContactSection.jsx's IntersectionObserver.
+     An already-open chat panel stays visible so an in-progress
+     conversation is never interrupted; the quick-menu also closes so
+     it can't reopen underneath the fade. */
+  body.contact-in-view .floating-fab-toggle,
+  body.contact-in-view .floating-quick-menu {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+}
+
+@media (max-width: 560px) {
+  .floating-buttons {
+    right: 14px;
+    bottom: 14px;
+    gap: 10px;
+  }
+
+  /* Collapse to a single round toggle on small screens — this is the
+     only thing sitting on the page by default, so it can no longer
+     cover a CTA button, headline, or map underneath it the way two
+     always-visible pills used to as the hero carousel and other pages
+     scroll past that corner. Tapping it reveals WhatsApp + Chat. */
+  .floating-fab-toggle {
+    display: flex;
+  }
+
+  .floating-quick-menu {
+    display: none;
+  }
+
+  .floating-quick-menu.is-open {
+    display: flex;
+    margin-bottom: 4px;
+  }
+
+  /* Icon-only, compact circular buttons within the opened quick menu. */
+  .floating-button {
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    font-size: 0;
+  }
+
+  .chat-panel {
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
+    height: min(480px, 70vh);
+  }
+}

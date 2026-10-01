@@ -1,0 +1,47 @@
+.wp-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 28px 0 44px;
+}
+
+.wp-filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.wp-filter-tab {
+  border: 1px solid var(--wp-color-border);
+  background: #ffffff;
+  color: var(--wp-color-ink-soft);
+  padding: 9px 20px;
+  border-radius: var(--wp-radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.wp-filter-tab:hover {
+  border-color: var(--wp-color-accent);
+  color: var(--wp-color-accent);
+}
+
+.wp-filter-tab--active {
+  background: var(--wp-color-accent-soft);
+  border-color: var(--wp-color-accent);
+  color: var(--wp-color-accent);
+}
+
+.wp-filter-count {
+  font-family: var(--wp-font-body);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wp-color-muted);
+  white-space: nowrap;
+}

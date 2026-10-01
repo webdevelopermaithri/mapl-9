@@ -1,0 +1,291 @@
+.pc-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 40px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* [arrow] [one card] [arrow] — every breakpoint shows exactly one card. */
+.pc-carousel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.pc-arrow {
+  flex: 0 0 auto;
+  width: 40px;
+  border: none;
+  background: transparent;
+  color: var(--ink-600);
+  font-size: 30px;
+  line-height: 1;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.65;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.pc-arrow:hover {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+.pc-arrow:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--blue-500);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Viewport clips every slide except the one centered in view. */
+.pc-viewport {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  padding: 8px 4px;
+}
+
+/* Grid stacks every slide in the same cell, so the row height always
+   equals the tallest card — every card occupies the exact same box, no
+   matter which person is currently active or how long their bio is. */
+.pc-track {
+  display: grid;
+}
+
+/* When dynamicHeight is enabled, the row is pinned to the active card's
+   own measured height (set inline via JS) instead of the tallest bio in
+   the list, and anything taller than that is clipped rather than left
+   as visible empty space. */
+.pc-track--dynamic {
+  overflow: hidden;
+  transition: height 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.pc-card {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  box-sizing: border-box;
+  padding: 28px 32px 24px;
+  text-align: center;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--mist-200);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.5s ease, box-shadow 0.35s var(--ease-out);
+  box-shadow: 0 20px 50px rgba(20, 40, 90, 0.1);
+}
+
+.pc-card.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Slim accent bar along the top of the card. */
+.pc-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue-600), var(--gold-400));
+}
+
+.pc-photo {
+  width: 148px;
+  height: 148px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 16px;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--blue-100), var(--gold-300));
+  box-shadow: 0 10px 26px rgba(20, 50, 90, 0.14);
+}
+
+.pc-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  border: 3px solid var(--white);
+}
+
+.pc-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 23px;
+  margin: 0 0 6px;
+  color: var(--ink-900);
+}
+
+.pc-role {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--blue-600);
+  background: var(--blue-100);
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.pc-bio {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-600);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* Hidden by default — laptop/desktop always shows the full bio and never
+   sees this button. It's only switched on inside the mobile breakpoint
+   below, where the bio is clamped and needs a way to expand. */
+.pc-readmore {
+  display: none;
+}
+
+/* Dot navigation below the card. */
+.pc-dots {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.pc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: #c7d3de;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.pc-dot.is-active {
+  background: var(--blue-600);
+  transform: scale(1.25);
+}
+
+.pc-dot:hover {
+  background: #7f93ab;
+}
+
+@media (max-width: 900px) {
+  .pc-photo {
+    width: 130px;
+    height: 130px;
+  }
+
+  .pc-name {
+    font-size: 20px;
+  }
+
+  .pc-bio {
+    font-size: 14.5px;
+    max-width: 92%;
+  }
+
+  .pc-arrow {
+    font-size: 26px;
+    width: 32px;
+  }
+
+  .pc-card {
+    padding: 34px 24px 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pc-carousel {
+    gap: 0;
+  }
+
+  .pc-photo {
+    width: 108px;
+    height: 108px;
+    margin-bottom: 18px;
+  }
+
+  .pc-name {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .pc-role {
+    font-size: 11.5px;
+    margin-bottom: 16px;
+  }
+
+  .pc-bio {
+    font-size: 13.5px;
+    line-height: 1.65;
+    max-width: 100%;
+    /* The full bio made every card as tall as the longest person's bio
+       (the grid stack sizes the row to the tallest card). Clamping to a
+       few lines on mobile keeps the card compact; "Read more" reveals
+       the rest for whoever the visitor is currently looking at. */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .pc-bio.is-expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  .pc-readmore {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--blue-600);
+    cursor: pointer;
+  }
+
+  .pc-readmore:hover,
+  .pc-readmore:focus-visible {
+    text-decoration: underline;
+  }
+
+  .pc-arrow {
+    font-size: 22px;
+    width: 24px;
+    padding: 4px;
+  }
+
+  .pc-card {
+    padding: 28px 18px 24px;
+    border-radius: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .pc-photo {
+    width: 92px;
+    height: 92px;
+  }
+}

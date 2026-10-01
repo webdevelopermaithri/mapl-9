@@ -1,0 +1,15 @@
+export const CERTIFICATIONS = [
+  { badge: "ISO", shape: "circle", cross: true, color: "#1f6fb2", label: "CERTIFICATION", title: "ISO 9001:2015 Certified", desc: "MEGHDOOT® quality management certification" },
+  { badge: "CE", shape: "circle", color: "#1f6fb2", label: "CERTIFICATION", title: "CE Approved", desc: "Product compliance approval" },
+  { badge: "TUV", shape: "octagon", color: "#3b8fd6", label: "WATER TESTING", title: "TUV Water Testing", desc: "PFAS testing performed by TUV; AWG water certified PFA-free" },
+  { badge: "UL", shape: "square", color: "#d1436b", label: "CERTIFICATION", title: "UL Approved & Listed", desc: "Approved and listed for the US market" },
+  { badge: "ASSE", shape: "circle", color: "#3b8fd6", label: "RECENT CERTIFICATION", title: "ASSE 1090", desc: "Certification application in progress" },
+  { badge: "GOI", shape: "circle", color: "#8a97a1", label: "ENDORSEMENT", title: "Government of India", desc: "Approved by Ministry of Jal Shakti" },
+  { badge: "IR", shape: "circle", color: "#5b4fc4", label: "ENDORSEMENT", title: "Indian Railways", desc: "Approved by the Indian Railways Ministry and Railways Environment Fund" },
+  { badge: "QCI", shape: "circle", color: "#1f8a8a", label: "ENDORSEMENT", title: "Quality Council of India", desc: "Approved by QCI" },
+  { badge: "NDMA", shape: "circle", color: "#d98a2e", label: "ENDORSEMENT", title: "NDMA", desc: "Endorsed by the National Disaster Management Authority" },
+  { badge: "A/N", shape: "square", color: "#16233b", label: "DEFENSE ENDORSEMENT", title: "Indian Army & Navy", desc: "Endorsed by Indian Army and Indian Navy" },
+  { badge: "BIS", shape: "triangle", color: "#5fa8dd", label: "APPROVAL", title: "BIS & FSSAI", desc: "Packaged drinking water approvals" },
+  { badge: "UN", shape: "square", color: "#1f6fb2", label: "GLOBAL RECOGNITION", title: "UN Global SDG Pioneer", desc: "Recognized for water stewardship" },
+  { badge: "UNPF", shape: "square", color: "#2f9e5b", label: "ENDORSEMENT", title: "UN Peacekeeping Forces", desc: "Recommended for UN Peacekeeping Forces" },
+];

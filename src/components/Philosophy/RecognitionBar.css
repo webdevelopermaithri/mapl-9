@@ -1,0 +1,81 @@
+.recognition-bar {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background: linear-gradient(90deg, #3a5fa8, #4f76c4 60%, #6a8fd6);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Fixed to the LEFT of the bar, sits above the moving track */
+.recognition-label {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 18px clamp(20px, 5vw, 40px);
+  background: linear-gradient(90deg, #3a5fa8 70%, rgba(58, 95, 168, 0));
+}
+
+.recognition-label-text {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+}
+
+.recognition-track-mask {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+}
+
+.recognition-track {
+  display: flex;
+  align-items: center;
+  gap: clamp(36px, 6vw, 72px);
+  list-style: none;
+  margin: 0;
+  padding: 18px clamp(20px, 5vw, 40px) 18px 0;
+  width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+}
+
+.recognition-bar:hover .recognition-track {
+  animation-play-state: paused;
+}
+
+.recognition-item {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.recognition-org {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--white);
+}
+
+.recognition-desc {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media (max-width: 640px) {
+  .recognition-bar {
+    flex-direction: column;
+  }
+  .recognition-label {
+    padding: 12px 20px;
+    background: #3a5fa8;
+  }
+}

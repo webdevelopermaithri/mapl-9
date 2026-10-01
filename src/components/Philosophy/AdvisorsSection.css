@@ -1,0 +1,36 @@
+.phi-advisors {
+  background: var(--white);
+  padding: 16px 0 calc(var(--section-pad) * 0.6);
+}
+
+/* ---------------------------------------------------------------------
+   Same squared-off photo treatment as the Management carousel, so both
+   "The Management." and "The Advisors." sections look consistent.
+   ------------------------------------------------------------------- */
+.phi-advisors .pc-photo {
+  width: 100%;
+  max-width: clamp(180px, 26vw, 260px);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  border-radius: 20px;
+  padding: 0;
+  background: none;
+  box-shadow: 0 14px 32px rgba(20, 50, 90, 0.16);
+}
+
+.phi-advisors .pc-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  border: none;
+  object-fit: cover;
+  object-position: 50% 15%;
+}
+
+.phi-advisors .pc-card {
+  padding-top: 32px;
+}
+
+.phi-advisors .pc-name {
+  margin-top: 4px;
+}

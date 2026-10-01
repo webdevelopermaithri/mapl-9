@@ -1,0 +1,310 @@
+/* ============================================================
+   IMPACT PAGE — Hero / Awards / Testimonials / Client marquee /
+   Final CTA, ported from the standalone landing page build.
+   Every class is prefixed "il-" (Impact Landing) so nothing here
+   collides with Tailwind utilities, the Meghdoot page's .btn, the
+   shared RecognitionBar's .rec-*, or any other page's styling.
+   Reuses the site's existing navy/gold/blue/ink color tokens and the
+   shared .eyebrow class (defined in src/index.css)
+   so it matches the rest of the site.
+   ============================================================ */
+
+.il-section {
+  max-width: var(--container-w, 1180px);
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+@media (max-width: 720px) {
+  .il-section { padding: 56px 20px; }
+}
+
+.il-h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin: 0;
+}
+
+.il-sub { margin-top: 14px; }
+
+/* ---------- Hero ---------- */
+.il-hero {
+  position: relative;
+  padding: 72px 40px 80px;
+  text-align: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgb(7, 21, 43) 0%, rgb(13, 45, 86) 100%);
+  color: #fff;
+}
+
+@media (max-width: 720px) {
+  .il-hero { padding: 72px 20px 64px; }
+}
+
+.il-hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+}
+
+.il-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(6, 14, 28, 0.85) 0%,
+    rgba(6, 14, 28, 0.55) 48%,
+    rgba(6, 14, 28, 0.12) 100%
+  );
+}
+
+.il-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.il-hero-inner .eyebrow { color: rgba(255, 255, 255, 0.75); justify-content: center; margin-bottom: 24px; }
+
+.il-hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(52px, 5.4vw, 84px);
+  line-height: 1.08;
+  max-width: 960px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.il-gold { color: #e8b85a; font-style: italic; font-weight: 300; display: block; }
+
+.il-hero-sub {
+  margin: 28px auto 0;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 720px;
+}
+
+/* ---------- Recognition / Awards ---------- */
+.il-recognition { background: #fff; }
+.il-recognition .il-section { max-width: 1340px; }
+.il-recognition .il-h2 { font-size: clamp(30px, 4vw, 46px); color: var(--ink-900); }
+.il-recognition .il-sub { color: var(--ink-600); font-size: 16px; }
+
+.il-awards-split {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+}
+
+.il-awards-left { flex: 0 0 320px; }
+.il-awards-right { flex: 1; min-width: 0; }
+
+@media (max-width: 900px) {
+  .il-awards-split { flex-direction: column; align-items: stretch; gap: 32px; }
+  .il-awards-left { flex: none; }
+}
+
+.il-awards-carousel-wrap { position: relative; }
+
+.il-awards-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  padding: 4px 2px;
+}
+.il-awards-track::-webkit-scrollbar { display: none; }
+
+.il-award-slide { flex: 0 0 250px; scroll-snap-align: start; }
+
+.il-award-image {
+  position: relative;
+  height: 320px;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0b1220;
+}
+
+.il-award-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.il-award-watermark {
+  font-family: var(--font-display);
+  font-size: 60px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.28);
+  letter-spacing: 0.02em;
+}
+
+.il-award-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 20px 18px;
+  background: linear-gradient(180deg, rgba(6, 14, 28, 0) 0%, rgba(6, 14, 28, 0.72) 100%);
+}
+
+.il-award-title { font-family: var(--font-display); font-size: 17px; color: #fff; }
+.il-award-sub { margin-top: 4px; font-size: 12.5px; color: rgba(255, 255, 255, 0.85); }
+
+.il-awards-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(19, 28, 40, 0.12);
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(19, 28, 40, 0.16);
+  font-size: 18px;
+  color: var(--ink-900);
+  cursor: pointer;
+}
+.il-awards-arrow:disabled { color: #c3c9d0; cursor: default; }
+.il-awards-arrow--prev { left: 12px; }
+.il-awards-arrow--next { right: 12px; }
+
+/* ---------- Testimonials ---------- */
+.il-testimonials { background: var(--mist-100); }
+.il-testimonials .il-h2 { font-size: clamp(30px, 4vw, 46px); }
+
+.il-quotes-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 900px) { .il-quotes-grid { grid-template-columns: 1fr; } }
+
+.il-quote-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 32px;
+}
+
+.il-quote-mark { font-family: var(--font-display); font-size: 40px; color: var(--blue-600); opacity: 0.35; line-height: 1; }
+.il-quote-text { margin-top: 12px; font-size: 17px; line-height: 1.6; color: var(--ink-900); font-family: var(--font-display); }
+.il-quote-attr { margin-top: 24px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--blue-600); text-transform: uppercase; }
+
+/* ---------- Client marquee ---------- */
+.il-clients-wrap { padding: 48px 24px; background: #fff; text-align: center; }
+.il-clients-wrap .eyebrow { justify-content: center; display: inline-flex; color: var(--blue-600); margin-bottom: 32px; }
+
+.il-marquee-bar {
+  background: linear-gradient(90deg, var(--navy-800), var(--navy-700) 55%, var(--navy-800));
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid var(--line-on-navy);
+  border-bottom: 1px solid var(--line-on-navy);
+}
+
+.il-marquee-bar.il-light {
+  background: #fff;
+  border-top: 1px solid rgba(19, 28, 40, 0.1);
+  border-bottom: none;
+}
+
+.il-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll var(--il-marquee-duration, 28s) linear infinite;
+}
+
+.il-marquee-bar:hover .il-marquee-track { animation-play-state: paused; }
+
+.il-marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 40px;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+}
+
+.il-marquee-bar.il-light .il-marquee-item { color: var(--ink-600); }
+
+.il-brand-logo-img {
+  height: 34px;
+  max-width: 150px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: grayscale(0.15);
+  opacity: 0.9;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.il-marquee-item:hover .il-brand-logo-img {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+.il-brand-logo-fallback {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink-600);
+  white-space: nowrap;
+}
+
+/* ---------- Final CTA ---------- */
+.il-final-cta { background: #fff; }
+.il-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+@media (max-width: 860px) { .il-cta-grid { grid-template-columns: 1fr; } }
+
+.il-cta-photo-frame {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(160deg, var(--navy-800), var(--navy-700));
+}
+
+.il-cta-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.il-final-cta .eyebrow { color: var(--blue-600); margin-bottom: 20px; }
+.il-final-cta .il-h2 { font-size: clamp(30px, 4.4vw, 48px); line-height: 1.2; color: var(--ink-900); }
+.il-final-cta .il-sub { font-size: 16px; line-height: 1.7; color: var(--ink-600); max-width: 480px; }
+
+.il-cta-buttons { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+.il-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  text-decoration: none;
+}
+
+.il-btn-primary { background: var(--blue-600); color: #fff; }
+.il-btn-secondary { background: var(--blue-600); color: #fff; }

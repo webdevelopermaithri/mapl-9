@@ -1,0 +1,177 @@
+/* ============================================================
+   IMPACT ATLAS — ported from the standalone landing page build.
+   Uses the site's existing --navy-*, --gold-400 and --font-display
+   tokens (defined in src/index.css) so it matches the rest of the
+   site. Class names below (.atlas, .atlas-card, .tab-btn, .metric-*,
+   .callout-*) are unique across the codebase, so nothing needed a
+   prefix — but the section is still self-contained in this file.
+   ============================================================ */
+
+.atlas {
+  /* Same dark gradient background as the Engineering Specs section on
+     the Technology page, so every dark section shares one look. */
+  background: linear-gradient(180deg, #060e1c 0%, #0b1f3a 100%);
+  color: #fff;
+}
+
+.atlas-section {
+  position: relative;
+}
+
+.atlas-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+.atlas-card {
+  background: linear-gradient(rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1.3fr auto auto;
+  gap: 28px;
+  align-items: start;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 900px) {
+  .atlas-card { grid-template-columns: 1fr; }
+}
+
+/* Intro half of the split Impact Atlas: text on the left, the two
+   callout numbers stacked on top of each other on the right — instead
+   of side by side — so each card reads bigger and cleaner. */
+.atlas-card--intro {
+  grid-template-columns: 1.3fr auto;
+}
+
+@media (max-width: 900px) {
+  .atlas-card--intro { grid-template-columns: 1fr; }
+}
+
+.callout-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.callout-stack .callout-card { min-width: 260px; width: 100%; }
+
+.atlas-card .eyebrow { color: var(--gold-400); margin-bottom: 18px; }
+.atlas-card h2 { font-family: var(--font-display); font-size: clamp(26px, 3.4vw, 36px); line-height: 1.2; margin: 0; }
+.atlas-desc { margin-top: 16px; color: rgba(255, 255, 255, 0.65); font-size: 19px; line-height: 1.65; max-width: 520px; }
+
+/* Gentle crossfade when the tab changes, instead of the heading and
+   description snapping to their new text (and new length/height)
+   instantly, which read as an abrupt "jump". */
+.atlas-fade { animation: atlas-fade-in 0.35s ease both; }
+@keyframes atlas-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tab-row { display: flex; gap: 10px; margin-top: 28px; }
+
+.tab-row--standalone {
+  margin-top: 0;
+  margin-bottom: 32px;
+  padding: 18px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: fit-content;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--line-on-navy);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active { background: var(--navy-700); border-color: rgba(255, 255, 255, 0.3); color: #fff; }
+
+.callout-card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 24px 26px;
+  min-width: 200px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.callout-card.hovered {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.callout-card .value {
+  font-family: var(--font-display);
+  font-size: 42px;
+  color: var(--gold-400);
+  transition: color 0.2s ease;
+}
+
+.callout-card.hovered .value { color: #f0c988; }
+.callout-card .label { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; margin-top: 10px; }
+.callout-card .hint { font-size: 13px; color: rgba(255, 255, 255, 0.5); margin-top: 5px; }
+
+.metrics-grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@media (max-width: 720px) {
+  .metrics-grid { grid-template-columns: 1fr; }
+}
+
+.metric-cell {
+  padding: 44px 36px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.metric-cell:nth-child(3n) { border-right: none; }
+.metric-cell:nth-last-child(-n+3) { border-bottom: none; }
+
+.metric-cell.highlight {
+  background: linear-gradient(rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+}
+
+.metric-cell.hovered {
+  background: rgba(217, 169, 79, 0.1);
+  transform: translateY(-2px);
+}
+
+.metric-value {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.6vw, 44px);
+  color: var(--gold-400);
+  transition: color 0.2s ease;
+}
+
+.metric-cell.hovered .metric-value { color: #e7c383; }
+.metric-label { margin-top: 10px; font-size: 13px; font-weight: 700; letter-spacing: 0.03em; }
+.metric-hint { margin-top: 4px; font-size: 13px; color: rgba(255, 255, 255, 0.45); }

@@ -1,0 +1,106 @@
+/* ============================================================
+   PRODUCTS OVERVIEW PAGE — design tokens, ported from the
+   standalone MEGHDOOT product page build. Everything is scoped
+   under .mp-page / mp- prefixed classes and custom properties so
+   it never collides with Tailwind utilities or the rest of the
+   site's styling (mirrors how the Philosophy page was ported).
+   ============================================================ */
+
+.mp-page {
+  --mp-ink: #12283e;
+  --mp-navy-deep: #16324f;
+  --mp-navy-mid: #1f4a73;
+  --mp-blue-accent: #2f6fd6;
+  --mp-gold: #f2c14e;
+  --mp-cream: #f7f9fc;
+  --mp-sky-mist: #eaf1fb;
+  --mp-paper: #ffffff;
+  --mp-line: rgba(18, 40, 62, 0.1);
+  --mp-muted: #5b6b7c;
+
+  --mp-font-display: "Cormorant Garamond", Georgia, serif;
+  --mp-font-body: "Inter", "Segoe UI", sans-serif;
+
+  font-family: var(--mp-font-body);
+  color: var(--mp-ink);
+  background: var(--mp-cream);
+}
+
+.mp-page img {
+  max-width: 100%;
+  display: block;
+}
+
+.mp-page .mp-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.mp-page .mp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--mp-blue-accent);
+}
+
+.mp-page .mp-eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--mp-blue-accent);
+  display: inline-block;
+}
+
+.mp-page .mp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.mp-page .mp-btn:focus-visible {
+  outline: 3px solid var(--mp-gold);
+  outline-offset: 2px;
+}
+
+.mp-page .mp-btn-primary {
+  background: var(--mp-blue-accent);
+  color: #fff;
+  box-shadow: 0 10px 24px -10px rgba(47, 111, 214, 0.55);
+}
+
+.mp-page .mp-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px -10px rgba(47, 111, 214, 0.65);
+}
+
+.mp-page .mp-btn-secondary {
+  background: var(--mp-paper);
+  color: var(--mp-navy-deep);
+  border: 1px solid var(--mp-line);
+}
+
+.mp-page .mp-btn-secondary:hover {
+  transform: translateY(-1px);
+  border-color: var(--mp-blue-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-page * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

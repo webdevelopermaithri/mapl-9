@@ -1,0 +1,103 @@
+.rec-wrap {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(90deg, #16324f 0%, #1f4a73 50%, #16324f 100%);
+  padding: 18px 0;
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.rec-wrap::before,
+.rec-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 90px;
+  z-index: 2;
+  pointer-events: none;
+}
+.rec-wrap::before {
+  left: 0;
+  background: linear-gradient(90deg, #16324f 0%, transparent 100%);
+}
+.rec-wrap::after {
+  right: 0;
+  background: linear-gradient(270deg, #16324f 0%, transparent 100%);
+}
+.rec-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  background: #16324f;
+  z-index: 3;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: #f2c14e;
+  text-transform: uppercase;
+  box-shadow: 12px 0 20px -8px rgba(22, 50, 79, 0.9);
+}
+.rec-track {
+  display: flex;
+  width: max-content;
+  animation: rec-scroll 34s linear infinite;
+  padding-left: 170px;
+}
+.rec-wrap:hover .rec-track {
+  animation-play-state: paused;
+}
+@keyframes rec-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.rec-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 40px;
+  white-space: nowrap;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+}
+.rec-title {
+  font-family: "Segoe UI", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+}
+.rec-logo-img {
+  height: 34px;
+  max-width: 90px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.rec-logo-fallback {
+  font-family: Georgia, serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  padding: 4px 10px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.rec-org {
+  font-family: "Segoe UI", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}

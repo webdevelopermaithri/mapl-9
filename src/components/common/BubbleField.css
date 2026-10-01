@@ -1,0 +1,41 @@
+.bubble-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bubble-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.9),
+    rgba(26, 96, 191, 0.15) 60%,
+    rgba(0, 0, 0, 0) 75%
+  );
+  animation: bubble-rise linear infinite;
+  opacity: 0;
+}
+
+@keyframes bubble-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  10% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120vh) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble-particle {
+    animation: none;
+    display: none;
+  }
+}

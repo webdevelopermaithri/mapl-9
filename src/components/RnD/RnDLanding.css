@@ -1,0 +1,126 @@
+/* ============================================================
+   R&D PAGE — ported from the standalone maithri-research build.
+   Class names (.whero-*, .cat-card, .cap-card, .fit-card, .cta-btn,
+   .marquee-track, .marquee-wrap) were checked against the rest of
+   the site and are unique, so nothing needed a prefix. The Google
+   Fonts @import was dropped — Playfair Display and Inter are
+   already loaded site-wide via index.html.
+   ============================================================ */
+
+.whero-page {
+  font-family: 'Inter', sans-serif;
+  background: #FBFCFE;
+}
+
+.whero-serif {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.whero-eyebrow {
+  letter-spacing: 0.18em;
+}
+
+/* Portfolio category grid — 5 cards in a single row on desktop,
+   stepping down through tablet and mobile breakpoints. */
+.rnd-cat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1180px) {
+  .rnd-cat-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .rnd-cat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rnd-cat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Portfolio category cards, capability cards, and fit cards */
+.cat-card,
+.cap-card,
+.fit-card {
+  background: transparent;
+  border: 1.5px solid #E1E7F0;
+  border-radius: 18px;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cap-card {
+  background: #fff;
+}
+
+.fit-card {
+  background: #F5F9FD;
+}
+
+.cat-card:hover,
+.cap-card:hover,
+.fit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 34px -20px rgba(11, 37, 69, 0.25);
+}
+
+.cat-card:hover {
+  border-color: var(--accent);
+}
+
+.cap-card:hover,
+.fit-card:hover {
+  border-color: #C9DBF2;
+}
+
+/* Publication cards */
+.publication-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 50px -26px rgba(11, 37, 69, 0.4) !important;
+}
+
+.cat-open {
+  transition: gap 0.2s ease;
+}
+
+.cat-card:hover .cat-open {
+  gap: 10px;
+}
+
+/* Buttons */
+.cta-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -12px rgba(30, 86, 160, 0.5);
+}
+
+/* Recognition marquee */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+}
+
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
+}

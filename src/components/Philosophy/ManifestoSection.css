@@ -1,0 +1,132 @@
+.manifesto {
+  position: relative;
+  overflow: hidden;
+  padding: var(--section-pad) 0;
+  color: var(--white);
+  /* Same dark gradient background as the Engineering Specs section
+     (Technology page) and the Impact Atlas section, so every dark
+     section on the site shares one consistent look. */
+  background: linear-gradient(180deg, #060e1c 0%, #0b1f3a 100%);
+}
+
+/* Content Layer */
+.manifesto-content {
+  position: relative;
+  z-index: 2;
+}
+
+.manifesto-eyebrow {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.manifesto-title {
+  margin: 20px 0 44px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+}
+
+.manifesto-accent {
+  color: var(--gold-400);
+}
+
+/* Grid */
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+/* Cards */
+.manifesto-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  isolation: isolate;
+
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.manifesto-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(217, 169, 79, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.manifesto-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition:
+    transform 0.7s ease,
+    filter 0.7s ease;
+}
+
+.manifesto-card:hover img {
+  transform: scale(1.08);
+  filter: saturate(1.15);
+}
+
+/* Image Overlay */
+.manifesto-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      0deg,
+      rgba(3, 8, 18, 0.92) 0%,
+      rgba(3, 8, 18, 0.35) 45%,
+      rgba(3, 8, 18, 0.05) 70%
+    );
+}
+
+/* Text */
+.manifesto-copy {
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  bottom: 26px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.manifesto-copy span {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.manifesto-copy strong {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  letter-spacing: 0.01em;
+  color: var(--gold-400);
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  .manifesto-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .manifesto-card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .manifesto-title {
+    margin-bottom: 32px;
+  }
+}

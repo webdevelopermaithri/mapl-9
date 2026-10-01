@@ -1,0 +1,59 @@
+/* Scoped design tokens + layout for the "Water" R&D subsection, ported
+   from the standalone maithri-water-portfolio build. Everything is
+   namespaced with a wp- prefix and scoped under .wp-page so it can't
+   leak into or clash with the rest of the site's global styles
+   (the standalone build's --color-accent, --font-display, .hero,
+   .card, etc. would otherwise collide with existing site classes). */
+
+.wp-page {
+  --wp-color-bg-top: #f3f8ff;
+  --wp-color-bg-bottom: #e6eefc;
+  --wp-color-ink: #16202e;
+  --wp-color-ink-soft: #4a5568;
+  --wp-color-muted: #7c8797;
+  --wp-color-accent: #2b5fd9;
+  --wp-color-accent-soft: #eaf1ff;
+  --wp-color-card-bg: #ffffff;
+  --wp-color-border: #e3e9f4;
+
+  --wp-tag-water-bg: #e8f1ff;
+  --wp-tag-water-text: #2b5fd9;
+
+  --wp-font-display: 'Cormorant Garamond', 'Iowan Old Style', 'Georgia', serif;
+  --wp-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --wp-radius-lg: 20px;
+  --wp-radius-md: 14px;
+  --wp-radius-pill: 999px;
+
+  --wp-shadow-card: 0 10px 30px -12px rgba(23, 43, 99, 0.18);
+  --wp-shadow-card-hover: 0 18px 40px -14px rgba(23, 43, 99, 0.26);
+
+  min-height: 100vh;
+  font-family: var(--wp-font-body);
+  color: var(--wp-color-ink);
+  background: linear-gradient(180deg, var(--wp-color-bg-top) 0%, var(--wp-color-bg-bottom) 100%);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wp-page button {
+  font-family: inherit;
+}
+
+.wp-page__container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.wp-page__divider {
+  height: 1px;
+  background: var(--wp-color-border);
+  margin: 8px 0 0;
+}
+
+@media (max-width: 640px) {
+  .wp-page__container {
+    padding: 0 20px;
+  }
+}
